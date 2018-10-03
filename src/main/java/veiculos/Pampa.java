@@ -13,9 +13,13 @@ public class Pampa extends Veiculo implements TracaoIntegral {
 
     @Override
     public boolean ativarDesativarTracao() {
-        tracaoIntegral = !tracaoIntegral;
-        System.out.println("Tração integral da pampa: " + nome + " está : "+ tracaoIntegral);
-        return tracaoIntegral;
+        if(velocidade == 0) {
+            tracaoIntegral = !tracaoIntegral;
+            System.out.println("Tração integral da pampa: " + nome + " está : " + tracaoIntegral);
+            return tracaoIntegral;
+        }
+        System.out.println("Não foi possível ativar ou desativar a tração pois o carro não está parado");
+        return false;
     }
 
     @Override
@@ -29,11 +33,13 @@ public class Pampa extends Veiculo implements TracaoIntegral {
     }
 
     public boolean abrirCacamba(){
-        if (cacambaFechada){
-            System.out.println("Abrindo caçamba da pampa "+ nome);
-            cacambaFechada = false;
-            return  true;
-        }
+
+            if (cacambaFechada && velocidade == 0) {
+                System.out.println("Abrindo caçamba da pampa " + nome);
+                cacambaFechada = false;
+                return true;
+            }
+
         System.out.println("Caçamba já estava aberta da pampa "+ nome);
         return false;
     }

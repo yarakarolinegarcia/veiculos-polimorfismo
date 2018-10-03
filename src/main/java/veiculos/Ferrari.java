@@ -14,24 +14,25 @@ public class Ferrari extends Veiculo implements Conversivel {
 
     @Override
     public boolean abrirCapota() {
-        if (capotaAberta){
-            System.out.println("capota já estava aberta da ferrari " + nome);
-            return false;
-        }
-        capotaAberta = true;
-        System.out.println("abrindo capota da ferrari "+ nome);
-        return true;
+
+            if (capotaAberta && velocidade < 20) {
+                System.out.println("capota já estava aberta da ferrari " + nome);
+                return false;
+            }
+            capotaAberta = true;
+            System.out.println("abrindo capota da ferrari " + nome);
+            return true;
     }
 
     @Override
     public boolean fecharCapota() {
-        if (capotaAberta){
-            System.out.println("fechando capota da ferrari "+ nome);
+        if (capotaAberta && velocidade < 20) {
+            System.out.println("fechando capota da ferrari " + nome);
             capotaAberta = false;
             return true;
         }
-        System.out.println("capota da ferrari "+ nome+" já estava fechada");
-        return false;
+            System.out.println("capota da ferrari "+ nome+" já estava fechada");
+            return false;
     }
 
     @Override
